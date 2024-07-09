@@ -1,0 +1,7 @@
+node_modules
+test
+.zshrc.bak
+nvim.log
+out
+out.log
+rplugin

@@ -27,7 +27,7 @@ local instructions = {
     "will start the game."
 }
 
-local highscores = {
+local highscoretext = {
     "View Highscores"
 }
 
@@ -164,6 +164,8 @@ function Menu:render()
     for idx = 1, #types.difficulty do
         table.insert(lines, createMenuItem(types.difficulty[idx], self.difficulty))
     end
+
+    table.insert(lines, self.highscoretext)
 
     for idx = 1, #credits do
         table.insert(lines, credits[idx])

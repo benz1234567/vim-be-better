@@ -28,7 +28,8 @@ local instructions = {
 }
 
 local highscoretext = {
-    "View Highscores"
+    "",
+    "View Highscores",
 }
 
 local credits = {

@@ -70,7 +70,7 @@ end
 
 local function getMenuLength()
     return #types.games + #types.difficulty + #gameHeader +
-        #difficultyHeader + #credits
+        #difficultyHeader + #highscoretext + #credits
 end
 
 local function getTableChanges(lines, compareSet, startIdx)
@@ -136,7 +136,7 @@ function Menu:onChange()
 
     found, i, idx = getTableChanges(lines, highscores, idx)
     if found then
-        highscores()
+        renderHighScoreMenu()
         return
     end
 end

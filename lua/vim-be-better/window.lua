@@ -1,5 +1,5 @@
-local log = require("vim-be-good.log")
-local Buffer = require("vim-be-good.buffer")
+local log = require("vim-be-better.log")
+local Buffer = require("vim-be-better.buffer")
 local WindowHandler = {}
 
 local function generateConfig(rowPadding, colPadding)

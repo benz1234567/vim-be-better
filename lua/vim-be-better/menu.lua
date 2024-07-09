@@ -1,14 +1,14 @@
-local log = require("vim-be-good.log")
-local bind = require("vim-be-good.bind")
-local types = require("vim-be-good.types")
-local createEmpty = require("vim-be-good.game-utils").createEmpty
-local highscores = require("vim-be-good.highscore-menu")
+local log = require("vim-be-better.log")
+local bind = require("vim-be-better.bind")
+local types = require("vim-be-better.types")
+local createEmpty = require("vim-be-better.game-utils").createEmpty
+local highscores = require("vim-be-better.highscore-menu")
 
 local Menu = {}
 
 local gameHeader = {
     "",
-    "Select a Game (delete from the list to select) test",
+    "Select a Game (delete from the list to select)",
     "----------------------------------------------",
 }
 
@@ -38,7 +38,7 @@ local credits = {
     "Brandoncc",
     "polarmutex",
     "",
-    "https://github.com/ThePrimeagen/vim-be-good",
+    "https://github.com/ThePrimeagen/vim-be-better",
     "https://twitch.tv/ThePrimeagen",
 }
 
@@ -133,9 +133,11 @@ function Menu:onChange()
     end
 
 
-    found, i, idx = getTableChanges(lines, highscores idx)
+    found, i, idx = getTableChanges(lines, highscores, idx)
     if found then
-        highscores
+        highscores()
+        return
+    end
 end
 
 local function createMenuItem(str, currentValue)

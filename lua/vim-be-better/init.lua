@@ -1,7 +1,7 @@
-local WindowHandler = require("vim-be-good.window");
-local Menu = require("vim-be-good.menu");
-local GameRunner = require("vim-be-good.game-runner");
-local log = require("vim-be-good.log")
+local WindowHandler = require("vim-be-better.window");
+local Menu = require("vim-be-better.menu");
+local GameRunner = require("vim-be-better.game-runner");
+local log = require("vim-be-better.log")
 
 math.randomseed(os.time())
 

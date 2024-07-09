@@ -1,13 +1,13 @@
-local bind = require("vim-be-good.bind");
-local types = require("vim-be-good.types");
-local GameUtils = require("vim-be-good.game-utils");
-local RelativeRound = require("vim-be-good.games.relative");
-local WordRound = require("vim-be-good.games.words");
-local CiRound = require("vim-be-good.games.ci");
-local HjklRound = require("vim-be-good.games.hjkl");
-local WhackAMoleRound = require("vim-be-good.games.whackamole");
-local log = require("vim-be-good.log");
-local statistics = require("vim-be-good.statistics");
+local bind = require("vim-be-better.bind");
+local types = require("vim-be-better.types");
+local GameUtils = require("vim-be-better.game-utils");
+local RelativeRound = require("vim-be-better.games.relative");
+local WordRound = require("vim-be-better.games.words");
+local CiRound = require("vim-be-better.games.ci");
+local HjklRound = require("vim-be-better.games.hjkl");
+local WhackAMoleRound = require("vim-be-better.games.whackamole");
+local log = require("vim-be-better.log");
+local statistics = require("vim-be-better.statistics");
 
 Stats = statistics:new()
 

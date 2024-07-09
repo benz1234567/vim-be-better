@@ -1,5 +1,5 @@
-local bind = require("vim-be-good.bind")
-local log = require("vim-be-good.log")
+local bind = require("vim-be-better.bind")
+local log = require("vim-be-better.log")
 
 local function createEmpty(count)
     local lines = {}

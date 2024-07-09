@@ -1,4 +1,4 @@
-local log = require("vim-be-good.log")
+local log = require("vim-be-better.log")
 local default_config =  {
     plugin = 'VimBeGoodStats',
 

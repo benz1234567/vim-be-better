@@ -1,5 +1,5 @@
-local types = require("vim-be-good.types")
-local createEmpty = require("vim-be-good.game-utils").createEmpty
+local types = require("vim-be-better.types")
+local createEmpty = require("vim-be-better.game-utils").createEmpty
 
 local highscores = { }
 

@@ -1,5 +1,5 @@
-local GameUtils = require("vim-be-good.game-utils")
-local log = require("vim-be-good.log")
+local GameUtils = require("vim-be-better.game-utils")
+local log = require("vim-be-better.log")
 
 local instructions = {
     "Use vim movements to locate the character with the arrow under it as ",

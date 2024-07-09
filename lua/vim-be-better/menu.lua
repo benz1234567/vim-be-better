@@ -8,7 +8,7 @@ local Menu = {}
 
 local gameHeader = {
     "",
-    "Select a Game (delete from the list to select)",
+    "Select a Game (delete from the list to select) test",
     "----------------------------------------------",
 }
 
@@ -165,7 +165,9 @@ function Menu:render()
         table.insert(lines, createMenuItem(types.difficulty[idx], self.difficulty))
     end
 
-    table.insert(lines, self.highscoretext)
+    for idx = 1, #highscoretext do
+        table.insert(lines, highscoretext[idx])
+    end
 
     for idx = 1, #credits do
         table.insert(lines, credits[idx])

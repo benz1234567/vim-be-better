@@ -2,7 +2,7 @@ local log = require("vim-be-better.log")
 local bind = require("vim-be-better.bind")
 local types = require("vim-be-better.types")
 local createEmpty = require("vim-be-better.game-utils").createEmpty
-local highscores = require("vim-be-better.highscore-menu")
+local highScoreMenu = require("vim-be-better.highscore-menu")
 
 local Menu = {}
 
@@ -136,7 +136,7 @@ function Menu:onChange()
 
     found, i, idx = getTableChanges(lines, highscores, idx)
     if found then
-        renderHighScoreMenu()
+        HighScoreMenu:new(self.window)
         return
     end
 end

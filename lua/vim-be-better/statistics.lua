@@ -8,12 +8,14 @@ local default_config =  {
 
 local statistics = {}
 
+local stdpath = vim.api.nvim_call_function('stdpath', {'data'})
+
 function statistics:new(config)
     config = config or {}
     config = vim.tbl_deep_extend("force", default_config, config)
 
     local stats = {
-        file = string.format('%s/%s.log', vim.api.nvim_call_function('stdpath', {'data'}), config.plugin),
+        file = string.format('%s/%s.log', stdpath, config.plugin),
         saveStats = config.save_statistics
     }
     self.__index = self
@@ -30,12 +32,24 @@ function statistics:logResult(result)
     end
 end
 
-function statistics:logEnd(game)
+function statistics:logEnd(game, avg)
     if self.saveStats then
         local fp = io.open(self.file, "a")
-        local str = string.format("End of game: %s", game)
+        local str = string.format("eg,%s,%s\n", game, avg)
         fp:write(str)
         fp:close()
+    end
+end
+
+function statistics:updateHighScores()
+    local highscorepath = stdpath .. "/vim-be-good-highscores"
+    vim.fn.system("mkdir -p " .. highscorepath)
+    fr = io.open(self.file, "r")
+    local matchinglines = {}
+    for line in fr:lines() do
+        if line:match("^eg") then
+            table.insert(matchinglines, line)
+        end
     end
 end
 

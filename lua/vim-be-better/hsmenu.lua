@@ -51,9 +51,13 @@ local function getTableChanges(lines, compareSet, startIdx)
     return found, i, idx
 end
 
+--local changed = 1
+
 function hsmenu:onChange()
     local lines = self.window.buffer:getGameLines()
     local maxCount = gethsmenuLength() - 1
+    --print(changed)
+    --changed = changed + 1
 
     if #lines == maxCount then
         return
@@ -67,6 +71,7 @@ function hsmenu:onChange()
 
     local found, i, idx = getTableChanges(lines, types.games, 1)
     if found then
+        -- showHighScores(i)
         self:render()
         return
     end

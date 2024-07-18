@@ -87,6 +87,7 @@ function GameRunner:new(selectedGames, difficulty, window, onFinished)
             failures = 0,
             timings = {},
             games = {},
+            average = 0,
         },
         state = states.playing
     }
@@ -261,12 +262,13 @@ function GameRunner:renderEndGame()
     for idx = 1, #self.results.timings do
         sum = sum + self.results.timings[idx]
     end
+    self.results.average = string.format("%.2f", sum / self.config.roundCount)
 
     self.ended = true
 
     -- TODO: Make this a bit better especially with random.
     table.insert(lines, string.format("%d / %d completed successfully", self.results.successes, self.config.roundCount))
-    table.insert(lines, string.format("Average %.2f", sum / self.config.roundCount))
+    table.insert(lines, string.format("Average %s", self.results.average))
     table.insert(lines, string.format("Game Type %s", self.results.games[1]))
 
     for idx = 1, 3 do
@@ -288,11 +290,7 @@ function GameRunner:endGame()
     self.state = states.gameEnd
     self.window.buffer:setInstructions({})
     self.window.buffer:render(lines)
-    local sum = 0
-    for idx = 1, #self.results.timings do
-        sum = sum + self.results.timings[idx]
-    end
-    Stats:logEnd(self.round:name(), string.format("%.2f", sum / self.config.roundCount))
+    Stats:logEnd(self.round:name(), self.results.average)
     Stats:updateHighScores()
 end
 

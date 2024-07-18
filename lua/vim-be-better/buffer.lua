@@ -141,14 +141,6 @@ function Buffer:clear()
         self.bufh, 0, len, false, createEmpty(len))
 end
 
-function Buffer:wipe(num)
-    local lines = {}
-    for idx = 1, num do
-        table.insert(lines, "")
-    end
-    vim.api.nvim_buf_set_lines(self.bufh, 0, vim.api.nvim_buf_line_count(self.bufh), false, lines)
-end
-
 function Buffer:onChange(cb)
     table.insert(self.onChangeList, cb)
 end

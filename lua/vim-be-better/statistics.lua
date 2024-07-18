@@ -32,10 +32,10 @@ function statistics:logResult(result)
     end
 end
 
-function statistics:logEnd(game, avg)
+function statistics:logEnd(game, avg, difficulty)
     if self.saveStats then
         local fp = io.open(self.file, "a")
-        local str = string.format("eg,%s,%s\n", game, avg)
+        local str = string.format("eg,%s,%s,%s\n", game, difficulty, avg)
         fp:write(str)
         fp:close()
     end

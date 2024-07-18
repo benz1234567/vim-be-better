@@ -97,6 +97,7 @@ local function menu()
         menu:close()
 
         dawd = hsmenu:go(windowHandler)
+        dawd:render()
     end
 
     createMenu()

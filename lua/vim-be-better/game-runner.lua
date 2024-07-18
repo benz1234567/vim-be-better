@@ -288,6 +288,7 @@ function GameRunner:endGame()
     self.state = states.gameEnd
     self.window.buffer:setInstructions({})
     self.window.buffer:render(lines)
+    Stats:logEnd(self.round:name())
 end
 
 function GameRunner:run()

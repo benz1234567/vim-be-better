@@ -1,7 +1,7 @@
 if has('nvim-0.5')
     fun! VimBeBetter()
         " dont forget to remove this one....
-        lua for k in pairs(package.loaded) do if k:match("^vim%-be%-good") then package.loaded[k] = nil end end
+        lua for k in pairs(package.loaded) do if k:match("^vim%-be%-better") then package.loaded[k] = nil end end
         lua require("vim-be-better").menu()
     endfun
 

@@ -2,7 +2,7 @@ local log = require("vim-be-better.log")
 local bind = require("vim-be-better.bind")
 local types = require("vim-be-better.types")
 local createEmpty = require("vim-be-better.game-utils").createEmpty
-local highScoreMenu = require("vim-be-better.highscore-menu")
+local hsmenu = require("vim-be-better.hsmenu")
 
 local Menu = {}
 
@@ -43,11 +43,12 @@ local credits = {
     "https://twitch.tv/ThePrimeagen",
 }
 
-function Menu:new(window, onResults)
+function Menu:new(window, onResults, onHsMenu)
     local menuObj = {
         window = window,
         buffer = window.buffer,
         onResults = onResults,
+        onHsMenu = onHsMenu,
 
         -- easy
         difficulty = types.difficulty[2],
@@ -134,9 +135,9 @@ function Menu:onChange()
     end
 
 
-    found, i, idx = getTableChanges(lines, highscores, idx)
+    found, i, idx = getTableChanges(lines, highscoretext, idx)
     if found then
-        HighScoreMenu:new(self.window)
+        ok, msg = pcall(self.onHsMenu)
         return
     end
 end

@@ -2,6 +2,7 @@ local WindowHandler = require("vim-be-better.window");
 local Menu = require("vim-be-better.menu");
 local GameRunner = require("vim-be-better.game-runner");
 local log = require("vim-be-better.log")
+local hsmenu = require("vim-be-better.hsmenu")
 
 math.randomseed(os.time())
 
@@ -54,7 +55,7 @@ local function menu()
     local onMenuSelect
 
     function createMenu()
-        menu = Menu:new(windowHandler, onMenuSelect)
+        menu = Menu:new(windowHandler, onMenuSelect, onHsMenu)
         menu:render()
     end
 
@@ -90,6 +91,12 @@ local function menu()
         if not ok then
             log.info("Error: Menu:new callback", msg)
         end
+    end
+
+    onHsMenu = function()
+        menu:close()
+
+        dawd = hsmenu:go(windowHandler)
     end
 
     createMenu()

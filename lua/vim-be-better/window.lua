@@ -3,8 +3,8 @@ local Buffer = require("vim-be-better.buffer")
 local WindowHandler = {}
 
 local function generateConfig(rowPadding, colPadding)
-    rowPadding = rowPadding or 6
-    colPadding = colPadding or 6
+    rowPadding = 0--rowPadding or 6
+    colPadding = 0--colPadding or 6
     local vimStats = vim.api.nvim_list_uis()[1]
     local w = vimStats.width
     local h = vimStats.height

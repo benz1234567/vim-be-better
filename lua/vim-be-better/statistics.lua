@@ -2,7 +2,7 @@ local log = require("vim-be-better.log")
 local default_config =  {
     plugin = 'VimBeGoodStats',
 
-    save_statistics = vim.g["vim_be_good_save_statistics"] or false,
+    save_statistics = true--vim.g["vim_be_good_save_statistics"] or false,
 
 }
 
@@ -25,6 +25,15 @@ function statistics:logResult(result)
         local fp = io.open(self.file, "a")
         local str = string.format("%s,%s,%s,%s,%s,%f\n",
         result.timestamp, result.roundNum, result.difficulty, result.roundName, result.success, result.time)
+        fp:write(str)
+        fp:close()
+    end
+end
+
+function statistics:logEnd(game)
+    if self.saveStats then
+        local fp = io.open(self.file, "a")
+        local str = string.format("End of game: %s", game)
         fp:write(str)
         fp:close()
     end

@@ -41,6 +41,11 @@ function statistics:logEnd(game, avg, difficulty)
     end
 end
 
+local function parseScores(line)
+    local game, difficulty, average = line:match('eg,(.-),(.-),(.*)')
+    return game, difficulty, tonumber(average)
+end
+
 function statistics:updateHighScores()
     local highscorepath = stdpath .. "/vim-be-good-highscores"
     vim.fn.system("mkdir -p " .. highscorepath)
@@ -49,8 +54,10 @@ function statistics:updateHighScores()
     for line in fr:lines() do
         if line:match("^eg") then
             table.insert(matchinglines, line)
+            local game, difficulty, average = parseScores(line)
         end
     end
+    fr:close()
 end
 
 return statistics

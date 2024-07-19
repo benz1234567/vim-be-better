@@ -64,9 +64,13 @@ function statistics:updateHighScores()
                 print("hsf error:", err)
                 return
             end
-            for line in hsf:lines() do
-                if line:match("^" .. difficulty) then
-                    --
+            for hsline in hsf:lines() do
+                if hsline:match("^" .. difficulty) then
+                    print(hsline)
+                    local highscore = tonumber(hsline:match('easy(.*)'))
+                    if average > highscore then
+                        print("new highscore")
+                    end
                 end
             end
             hsf:close()

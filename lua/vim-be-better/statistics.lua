@@ -1,4 +1,5 @@
 local log = require("vim-be-better.log")
+local types = require("vim-be-better.types")
 local default_config =  {
     plugin = 'VimBeGoodStats',
 
@@ -47,17 +48,31 @@ local function parseScores(line)
 end
 
 function statistics:updateHighScores()
-    local highscorepath = stdpath .. "/vim-be-good-highscores"
+    local highscorepath = stdpath .. "/vim-be-better-highscores"
     vim.fn.system("mkdir -p " .. highscorepath)
-    fr = io.open(self.file, "r")
+    for idx = 1, #types.games do
+        vim.fn.system("touch " .. highscorepath .. "/" .. types.games[idx])
+    end
+    sf = io.open(self.file, "r")
     local matchinglines = {}
-    for line in fr:lines() do
+    for line in sf:lines() do
         if line:match("^eg") then
             table.insert(matchinglines, line)
             local game, difficulty, average = parseScores(line)
+            hsf, err = io.open(highscorepath .. "/" .. game, "r")
+            if not hsf then
+                print("hsf error:", err)
+                return
+            end
+            for line in hsf:lines() do
+                if line:match("^" .. difficulty) then
+                    --
+                end
+            end
+            hsf:close()
         end
     end
-    fr:close()
+    sf:close()
 end
 
 return statistics

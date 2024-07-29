@@ -134,6 +134,13 @@ function Buffer:getGameLines()
     return lines
 end
 
+function Buffer:getAllLines()
+    local lines = vim.api.nvim_buf_get_lines(
+        self.bufh, 0, 8, false)
+
+    return lines
+end
+
 function Buffer:clear()
     local len = #self.lastRenderedInstruction + 1 + (#self.lastRendered or 0)
 

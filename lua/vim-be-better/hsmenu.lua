@@ -6,7 +6,7 @@ local createEmpty = require("vim-be-better.game-utils").createEmpty
 
 local header = {
     "Highscores: Select a game",
-    "",
+    " ",
 }
 
 local hsmenu = { }
@@ -38,9 +38,14 @@ local function getTableChanges(lines, compareSet, startIdx)
     local idx = startIdx
     local i = 1
     local found = false
+    --for idx = 1, #compareSet do
+    --    print(compareSet[idx])
+    --    vim.fn.system("sleep 1")
+    --end
 
     while found == false and idx <= maxCount and i <= #compareSet do
         if lines[idx] == nil or lines[idx]:find(compareSet[i], 1, true) == nil then
+            print(lines[idx])
             found = true
         else
             i = i + 1
@@ -54,8 +59,8 @@ end
 --local changed = 1
 
 function hsmenu:onChange()
-    local lines = self.window.buffer:getGameLines()
-    local maxCount = gethsmenuLength() - 1
+    local lines = self.window.buffer:getAllLines()
+    local maxCount = gethsmenuLength()
     --print(changed)
     --changed = changed + 1
 
@@ -69,10 +74,12 @@ function hsmenu:onChange()
         return
     end
 
-    local found, i, idx = getTableChanges(lines, types.games, 1)
+    local found, i, idx = getTableChanges(lines, types.games, 3)
     if found then
-        -- showHighScores(i)
-        self:render()
+        --local lines = {}
+        --table.insert(lines, types.games[i])
+        print(i)
+        vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, 35, false, { types.games[i], 'scores', 'scores', 'scores', 'scores', 'scores', 'scores', 'scores' })
         return
     end
 end

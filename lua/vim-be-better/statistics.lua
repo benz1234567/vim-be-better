@@ -80,6 +80,7 @@ function statistics:updateHighScores()
                     local highscore = tonumber(hsline:match(difficulty .. ' (.*)'))
                     if average < highscore then
                         table.insert(hsftable, (string.format('%s %s\n', difficulty, average)))
+                        print("New Highscore")
                     else
                         table.insert(hsftable, hsline .. '\n')
                     end
@@ -91,7 +92,6 @@ function statistics:updateHighScores()
             local hsfw = io.open(highscorepath .. "/" .. game, "w")
             for idx = 1, #hsftable do
                 hsfw:write(hsftable[idx])
-                print(idx)
             end
             hsfw:close()
         end

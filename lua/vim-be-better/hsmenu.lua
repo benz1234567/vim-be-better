@@ -79,7 +79,7 @@ function hsmenu:onChange()
         --local lines = {}
         --table.insert(lines, types.games[i])
         print(i)
-        vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, 35, false, { types.games[i], 'scores', 'scores', 'scores', 'scores', 'scores', 'scores', 'scores' })
+        vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, 35, false, { types.games[i], ' ', 'scores', 'scores', 'scores', 'scores', 'scores', 'scores' })
         return
     end
 end

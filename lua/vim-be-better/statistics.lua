@@ -51,7 +51,17 @@ function statistics:updateHighScores()
     local highscorepath = stdpath .. "/vim-be-better-highscores"
     vim.fn.system("mkdir -p " .. highscorepath)
     for idx = 1, #types.games do
-        vim.fn.system("touch " .. highscorepath .. "/" .. types.games[idx])
+        --vim.fn.system("touch " .. highscorepath .. "/" .. types.games[idx])
+        local hsfile, err = io.open(highscorepath .. "/" .. types.games[idx], "r")
+        if hsfile then
+            hsfile:close()
+        else
+            local file = io.open(highscorepath .. "/" .. types.games[idx], "w")
+            for idx = 1, #types.difficulty do
+                file:write(string.format('%s %s\n', types.difficulty[idx], '999999999'))
+            end
+            file:close()
+        end
     end
     sf = io.open(self.file, "r")
     local matchinglines = {}
@@ -64,16 +74,26 @@ function statistics:updateHighScores()
                 print("hsf error:", err)
                 return
             end
+            local hsftable = {}
             for hsline in hsf:lines() do
                 if hsline:match("^" .. difficulty) then
-                    print(hsline)
-                    local highscore = tonumber(hsline:match('easy (.*)'))
-                    if average > highscore then
-                        print("new highscore")
+                    local highscore = tonumber(hsline:match(difficulty .. ' (.*)'))
+                    if average < highscore then
+                        table.insert(hsftable, (string.format('%s %s\n', difficulty, average)))
+                    else
+                        table.insert(hsftable, hsline .. '\n')
                     end
+                else
+                    table.insert(hsftable, hsline .. '\n')
                 end
             end
             hsf:close()
+            local hsfw = io.open(highscorepath .. "/" .. game, "w")
+            for idx = 1, #hsftable do
+                hsfw:write(hsftable[idx])
+                print(idx)
+            end
+            hsfw:close()
         end
     end
     sf:close()

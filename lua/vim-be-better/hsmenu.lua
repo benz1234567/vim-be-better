@@ -34,14 +34,10 @@ local function gethsmenuLength()
 end
 
 local function getTableChanges(lines, compareSet, startIdx)
-    local maxCount = #lines
+    local maxCount = #lines + 1
     local idx = startIdx
     local i = 1
     local found = false
-    --for idx = 1, #compareSet do
-    --    print(compareSet[idx])
-    --    vim.fn.system("sleep 1")
-    --end
 
     while found == false and idx <= maxCount and i <= #compareSet do
         if lines[idx] == nil or lines[idx]:find(compareSet[i], 1, true) == nil then
@@ -73,7 +69,7 @@ function hsmenu:onChange()
         return
     end
 
-    local found, i, idx = getTableChanges(lines, types.games, 3)
+    local found, i, idx = getTableChanges(lines, types.games, idx)
     if found then
         local scores = { types.games[i] .. " highscores (delete any line to go back)", " " }
         local hsf = io.open("/home/benny/.local/share/nvim/vim-be-better-highscores/" .. types.games[i], "r")
@@ -81,7 +77,7 @@ function hsmenu:onChange()
             table.insert(scores, line)
         end
         hsf:close()
-        vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, 35, false, scores)
+        vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, -1, false, scores)
         return
     end
 end
@@ -96,7 +92,7 @@ function hsmenu:render()
         table.insert(lines, types.games[idx])
     end
     --self.window.buffer:render(lines)
-    vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, 35, false, lines)
+    vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, -1, false, lines)
 end
 
 function hsmenu:close()

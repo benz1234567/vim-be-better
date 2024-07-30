@@ -96,7 +96,7 @@ local function menu()
     onHsMenu = function()
         menu:close()
 
-        dawd = hsmenu:go(windowHandler)
+        dawd = hsmenu:go(windowHandler, createMenu)
         dawd:render()
     end
 

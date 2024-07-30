@@ -10,10 +10,11 @@ local header = {
 }
 
 local hsmenu = { }
-function hsmenu:go(window)
+function hsmenu:go(window, onMenuSelect)
     local menuObj = {
         window = window,
         buffer = window.buffer,
+        onMenuSelect = onMenuSelect,
     }
 
     window.buffer:setInstructions({})
@@ -65,7 +66,7 @@ function hsmenu:onChange()
 
     local found, i, idx = getTableChanges(lines, header, 1)
     if found then
-        self:render()
+        self:close()
         return
     end
 
@@ -97,6 +98,7 @@ end
 
 function hsmenu:close()
     self.buffer:removeListener(self._onChange)
+    pcall(self.onMenuSelect)
 end
 
 return hsmenu

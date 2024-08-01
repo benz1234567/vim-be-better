@@ -21,20 +21,20 @@ export class DeleteRound extends Round {
         let fixedOffset: number = 0;
 
         const isDefinedUserRandomOffset = await game.nvim.eval(
-            'exists("vim_be_good_delete_me_random_offset")',
+            'exists("vim_be_better_delete_me_random_offset")',
         );
         const isDefinedUserFixedOffset = await game.nvim.eval(
-            'exists("vim_be_good_delete_me_fixed_offset")',
+            'exists("vim_be_better_delete_me_fixed_offset")',
         );
 
         if (isDefinedUserRandomOffset) {
             randomOffset = Number(
-                await game.nvim.getVar("vim_be_good_delete_me_random_offset"),
+                await game.nvim.getVar("vim_be_better_delete_me_random_offset"),
             );
         }
         if (isDefinedUserFixedOffset) {
             fixedOffset = Number(
-                await game.nvim.getVar("vim_be_good_delete_me_fixed_offset"),
+                await game.nvim.getVar("vim_be_better_delete_me_fixed_offset"),
             );
         }
 
@@ -48,8 +48,8 @@ export class DeleteRound extends Round {
         );
 
         let userOptions: userOptionsType = {
-            vim_be_good_delete_me_random_offset: randomOffset,
-            vim_be_good_delete_me_fixed_offset: fixedOffset,
+            vim_be_better_delete_me_random_offset: randomOffset,
+            vim_be_better_delete_me_fixed_offset: fixedOffset,
         };
 
         return userOptions;
@@ -57,8 +57,8 @@ export class DeleteRound extends Round {
 
     private async getColumnOffset(game: IGame) {
         let userOptions = await this.getGameOptions(game);
-        let randomOffset = userOptions["vim_be_good_delete_me_random_offset"];
-        let fixedOffset = userOptions["vim_be_good_delete_me_fixed_offset"];
+        let randomOffset = userOptions["vim_be_better_delete_me_random_offset"];
+        let fixedOffset = userOptions["vim_be_better_delete_me_fixed_offset"];
         let offset: number;
 
         let difficultyToOffset = {

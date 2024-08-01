@@ -21,8 +21,8 @@ function RelativeRound:new(difficulty, window)
     local round = {
         window = window,
         difficulty = difficulty,
-        fixedOffset = vim.g["vim_be_good_delete_me_fixed_offset"],
-        randomOffset = vim.g["vim_be_good_delete_me_random_offset"] or randomOffset[difficulty],
+        fixedOffset = vim.g["vim_be_better_delete_me_fixed_offset"],
+        randomOffset = vim.g["vim_be_better_delete_me_random_offset"] or randomOffset[difficulty],
     }
 
     self.__index = self

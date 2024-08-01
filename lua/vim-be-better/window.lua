@@ -58,13 +58,16 @@ end
 
 function WindowHandler:show()
     if self.bufh == 0 then
-        --self.bufh = vim.api.nvim_create_buf(false, true)
+        self.bufh = vim.api.nvim_create_buf(false, true)
         self.buffer = Buffer:new(self.bufh, self)
     end
 
     if self.winId == 0 then
-        --uncomment to make a new window
-        --self.winId = vim.api.nvim_open_win(self.bufh, true, self.config)
+        if vim.g["vim_be_better_play_in_new_window"] == "true" then
+            self.winId = vim.api.nvim_open_win(self.bufh, true, self.config)
+        else
+            vim.api.nvim_set_current_buf(self.bufh)
+        end
     else
         vim.api.nvim_win_set_config(self.winId, self.config)
     end

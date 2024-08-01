@@ -151,6 +151,7 @@ end
 
 function Menu:render()
     self.window.buffer:clearGameLines()
+    self.window.buffer:debugLine("")
 
     local lines = { }
     for idx = 1, #gameHeader do

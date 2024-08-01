@@ -295,8 +295,6 @@ function GameRunner:endGame()
 end
 
 function GameRunner:run()
-    vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'modifiable', true)
-
     local idx = math.random(1, #self.rounds)
     self.round = self.rounds[idx]
 

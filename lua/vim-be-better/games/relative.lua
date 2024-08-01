@@ -57,6 +57,7 @@ function RelativeRound:checkForWin()
 end
 
 function RelativeRound:render()
+    vim.opt.relativenumber = true
     local lines = GameUtils.createEmpty(20)
     local deleteMeIdx = math.random(1, 20)
     local goHigh = deleteMeIdx < 17 and math.random() > 0.5

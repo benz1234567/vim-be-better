@@ -54,7 +54,6 @@ function CiRound:checkForWin()
     local lowercased = concatenated:lower()
 
     log.info("CiRound:checkForWin", vim.inspect(lowercased))
-
     winner = false
     if self.config.ifStatement then
         winner = lowercased == "if (" .. self.config.randomWord .. ") {bar}"
@@ -72,8 +71,9 @@ end
 function CiRound:render()
     local lines = GameUtils.createEmpty(gameLineCount)
     local linesAfterInstructions = gameLineCount - #instructions
-    local insertionIndex = GameUtils.getRandomInsertionLocation(gameLineCount, 6, #instructions)
+    local insertionIndex = GameUtils.getRandomInsertionLocation(gameLineCount, 6, #instructions) + 1
     local goHigh = insertionIndex < gameLineCount / 2 and math.random() > 0.5
+
 
     local cursorIdx
     if goHigh then
@@ -96,6 +96,11 @@ function CiRound:render()
         lines[insertionIndex + 4] = "    " .. GameUtils.getRandomWord() .. ","
         lines[insertionIndex + 5] = "]";
     end
+
+    --if not lines then
+    --    vim.fn.system("sleep 1")
+    --end
+
 
     return lines, cursorIdx
 end

@@ -253,8 +253,7 @@ function GameRunner:close()
 end
 
 function GameRunner:renderEndGame()
-    self.window.buffer:debugLine(string.format(
-        "Round %d / %d", self.currentRound, self.config.roundCount))
+    self.window.buffer:debugLine("GAME OVER")
 
     local lines = {}
     local sum = 0
@@ -266,21 +265,23 @@ function GameRunner:renderEndGame()
 
     self.ended = true
 
-    -- TODO: Make this a bit better especially with random.
-    table.insert(lines, string.format("%d / %d completed successfully", self.results.successes, self.config.roundCount))
-    table.insert(lines, string.format("Average %s", self.results.average))
-    table.insert(lines, string.format("Game Type %s", self.results.games[1]))
+    table.insert(lines, string.format("%d / %d rounds completed", self.results.successes, self.config.roundCount))
+    table.insert(lines, string.format("Score: %s", self.results.average))
+    table.insert(lines, string.format("Highscore: %s", statistics:getHighScore(self.results.games[1], self.config.difficulty)))
+    table.insert(lines, string.format("Game: %s", self.results.games[1]))
+    table.insert(lines, string.format("Difficulty: %s", self.config.difficulty))
 
-    for idx = 1, 3 do
+    for idx = 1, 2 do
         table.insert(lines, "")
     end
 
     table.insert(lines, "Where do you want to go next? (Delete Line)")
+    table.insert(lines, "")
     local optionLine = #lines + 1
 
     table.insert(lines, "Menu")
     table.insert(lines, "Replay")
-    table.insert(lines, "Quit (or just ZZ like a real man)")
+    table.insert(lines, "Quit (or just ZQ like a real man)")
 
     return lines, optionLine
 end

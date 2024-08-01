@@ -80,7 +80,7 @@ function statistics:updateHighScores()
                     local highscore = tonumber(hsline:match(difficulty .. ' (.*)'))
                     if average < highscore then
                         table.insert(hsftable, (string.format('%s %s\n', difficulty, average)))
-                        print("New Highscore")
+                        print("New Highscore!")
                     else
                         table.insert(hsftable, hsline .. '\n')
                     end
@@ -97,6 +97,20 @@ function statistics:updateHighScores()
         end
     end
     sf:close()
+end
+
+function statistics:getHighScore(game, difficulty)
+    local highscorepath = stdpath .. "/vim-be-better-highscores/"
+    local hsf = io.open(highscorepath .. game, "r")
+    local highscore = nil
+    for hsline in hsf:lines() do
+        if hsline:match("^" .. difficulty) then
+            highscore = tonumber(hsline:match(difficulty .. ' (.*)'))
+            break
+        end
+    end
+    hsf:close()
+    return highscore
 end
 
 return statistics

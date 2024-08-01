@@ -37,11 +37,13 @@ function WindowHandler:new(rowPadding, colPadding)
 end
 
 function WindowHandler:close()
-    if self.winId ~= 0 then
-        vim.api.nvim_win_close(self.winId, true)
-    end
+    if vim.g["vim_be_better_play_in_new_window"] == "true" then
+        if self.winId ~= 0 then
+            vim.api.nvim_win_close(self.winId, true)
+        end
 
-    self.winId = 0
+        self.winId = 0
+    end
 
     log.info("window#close", debug.traceback())
     if self.buffer then

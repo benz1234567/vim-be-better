@@ -3,7 +3,7 @@ local types = require("vim-be-better.types")
 local default_config =  {
     plugin = 'VimBeGoodStats',
 
-    save_statistics = true--vim.g["vim_be_good_save_statistics"] or false,
+    save_statistics = vim.g["vim_be_good_save_statistics"] or true,
 
 }
 

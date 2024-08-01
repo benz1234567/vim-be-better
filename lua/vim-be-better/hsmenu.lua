@@ -52,13 +52,9 @@ local function getTableChanges(lines, compareSet, startIdx)
     return found, i, idx
 end
 
---local changed = 1
-
 function hsmenu:onChange()
     local lines = self.window.buffer:getAllLines()
     local maxCount = gethsmenuLength()
-    --print(changed)
-    --changed = changed + 1
 
     if #lines == maxCount then
         return
@@ -73,7 +69,8 @@ function hsmenu:onChange()
     local found, i, idx = getTableChanges(lines, types.games, idx)
     if found then
         local scores = { types.games[i] .. " highscores (delete any line to go back)", " " }
-        local hsf = io.open("/home/benny/.local/share/nvim/vim-be-better-highscores/" .. types.games[i], "r")
+        local highscorepath = vim.api.nvim_call_function('stdpath', {'data'}) .. "/vim-be-better-highscores/"
+        local hsf = io.open(highscorepath .. types.games[i], "r")
         for line in hsf:lines() do
             table.insert(scores, line)
         end

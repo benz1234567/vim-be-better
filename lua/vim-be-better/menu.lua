@@ -20,27 +20,21 @@ local difficultyHeader = {
 }
 
 local instructions = {
-    "VimBeGood is a collection of small games for neovim which are",
-    "intended to help you improve your vim proficiency.",
-    "delete a line to select the line.  If you delete a difficulty,",
-    "it will select that difficulty, but if you delete a game it ",
-    "will start the game."
+    "Vim-Be-Better",
 }
 
 local highscoretext = {
     "",
+    "----------------------------------------------------",
+    "",
     "View Highscores",
+    ""
 }
 
 local credits = {
+    "----------------------------------------------------",
     "",
-    "",
-    "Created by ThePrimeagen",
-    "Brandoncc",
-    "polarmutex",
-    "",
-    "https://github.com/ThePrimeagen/vim-be-better",
-    "https://twitch.tv/ThePrimeagen",
+    "Fork of https://github.com/ThePrimeagen/vim-be-good"
 }
 
 function Menu:new(window, onResults, onHsMenu)

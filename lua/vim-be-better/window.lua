@@ -3,8 +3,8 @@ local Buffer = require("vim-be-better.buffer")
 local WindowHandler = {}
 
 local function generateConfig(rowPadding, colPadding)
-    rowPadding = 0--rowPadding or 6
-    colPadding = 0--colPadding or 6
+    rowPadding = rowPadding or 2
+    colPadding = colPadding or 2
     local vimStats = vim.api.nvim_list_uis()[1]
     local w = vimStats.width
     local h = vimStats.height
@@ -58,12 +58,13 @@ end
 
 function WindowHandler:show()
     if self.bufh == 0 then
-        self.bufh = vim.api.nvim_create_buf(false, true)
+        --self.bufh = vim.api.nvim_create_buf(false, true)
         self.buffer = Buffer:new(self.bufh, self)
     end
 
     if self.winId == 0 then
-        self.winId = vim.api.nvim_open_win(self.bufh, true, self.config)
+        --uncomment to make a new window
+        --self.winId = vim.api.nvim_open_win(self.bufh, true, self.config)
     else
         vim.api.nvim_win_set_config(self.winId, self.config)
     end

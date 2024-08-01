@@ -57,7 +57,7 @@ function statistics:updateHighScores()
             hsfile:close()
         else
             local file = io.open(highscorepath .. "/" .. types.games[idx], "w")
-            for idx = 1, #types.difficulty do
+            for idx = 2, #types.difficulty do
                 file:write(string.format('%s %s\n', types.difficulty[idx], '999999999'))
             end
             file:close()

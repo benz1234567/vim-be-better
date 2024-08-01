@@ -287,12 +287,12 @@ function GameRunner:renderEndGame()
 end
 
 function GameRunner:endGame()
+    Stats:updateHighScores()
     local lines = self:renderEndGame()
     self.state = states.gameEnd
     self.window.buffer:setInstructions({})
     self.window.buffer:render(lines)
     Stats:logEnd(self.round:name(), self.results.average, self.round.difficulty)
-    Stats:updateHighScores()
 end
 
 function GameRunner:run()

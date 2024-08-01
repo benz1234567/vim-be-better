@@ -35,6 +35,8 @@ function Buffer:close()
 
     if vim.api.nvim_buf_detach then
         vim.api.nvim_buf_detach(self.bufh)
+    else
+        vim.api.nvim_buf_delete(self.bufh, {})
     end
 end
 

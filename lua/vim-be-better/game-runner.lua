@@ -14,7 +14,7 @@ Stats = statistics:new()
 local endStates = {
     menu = "Menu",
     replay = "Replay",
-    quit = "Quit (or just ZZ like a real man)",
+    quit = "Quit (or just ZQ like a real man)",
 }
 
 local states = {

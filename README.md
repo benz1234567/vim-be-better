@@ -12,4 +12,4 @@ Will add more games soon..
 
 Feel free to make your own though, and either distribute them yourself or make a PR.
 
-PS: all you have to do is put your game's .lua file into the games folder.
+PS: all you have to do is put your game's .lua file into the games folder. Make sure yourGame:name() is the same as the file name without .lua.

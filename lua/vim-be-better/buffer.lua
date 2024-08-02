@@ -142,7 +142,7 @@ end
 
 function Buffer:getAllLines()
     local lines = vim.api.nvim_buf_get_lines(
-        self.bufh, 0, 8, false)
+        self.bufh, 0, -1, false)
 
     return lines
 end

@@ -67,11 +67,16 @@ function hsmenu:onChange()
         return
     end
 
-    local found, i, idx = getTableChanges(lines, types.games, idx)
+    local found, i, idx = getTableChanges(lines, types.games, 3)
     if found and not viewinghs then
         scores = { types.games[i] .. " highscores (delete any line to go back to menu)", " " }
         local highscorepath = vim.api.nvim_call_function('stdpath', {'data'}) .. "/vim-be-better-highscores/"
         local hsf = io.open(highscorepath .. types.games[i], "r")
+        if not hsf then
+            self:close()
+            print("No highscore file for this game")
+            return
+        end
         for line in hsf:lines() do
             table.insert(scores, line)
         end

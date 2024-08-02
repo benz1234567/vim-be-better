@@ -106,7 +106,7 @@ function CiRound:render()
 end
 
 function CiRound:name()
-    return "ci{"
+    return "ci"
 end
 
 return CiRound

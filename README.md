@@ -6,7 +6,7 @@ A game to help you get better, now with highscores for motivation and that kovaa
 
 The difficulty doesn't do anything on most of the games, just play on easy for those?
 
-# Extra Games
+## Extra Games
 
 Will add more games soon..
 

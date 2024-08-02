@@ -1,11 +1,6 @@
 local bind = require("vim-be-better.bind");
 local types = require("vim-be-better.types");
 local GameUtils = require("vim-be-better.game-utils");
-local RelativeRound = require("vim-be-better.games.relative");
-local WordRound = require("vim-be-better.games.words");
-local CiRound = require("vim-be-better.games.ci");
-local HjklRound = require("vim-be-better.games.hjkl");
-local WhackAMoleRound = require("vim-be-better.games.whackamole");
 local log = require("vim-be-better.log");
 local statistics = require("vim-be-better.statistics");
 
@@ -23,26 +18,30 @@ local states = {
 }
 
 local games = {
-    ["ci{"] = function(difficulty, window)
-        return CiRound:new(difficulty, window)
-    end,
-
-    relative = function(difficulty, window)
-        return RelativeRound:new(difficulty, window)
-    end,
-
-    words = function(difficulty, window)
-        return WordRound:new(difficulty, window)
-    end,
-
-    hjkl = function(difficulty, window)
-        return HjklRound:new(difficulty, window)
-    end,
-
-    whackamole = function(difficulty, window)
-        return WhackAMoleRound:new(difficulty, window)
-    end,
 }
+
+local function getBaseName(file)
+    return file:match("(.+)%..+$")
+end
+
+local function requireGames()
+    local gamesPath = debug.getinfo(1).source:match("@?(.*/)") .. "games/"
+    
+    local files = vim.fn.readdir(gamesPath)
+
+    for _, file in ipairs(files) do
+        local gameName = getBaseName(file)
+        if gameName then
+            local modulePath = "vim-be-better.games." .. gameName
+            local gameModule = require(modulePath)
+            games[gameName] = function(difficulty, window)
+                return gameModule:new(difficulty, window)
+            end
+        end
+    end
+end
+
+requireGames()
 
 local runningId = 0
 

@@ -172,6 +172,7 @@ function Menu:render()
         table.insert(lines, credits[idx])
     end
 
+    self.window.buffer:makeEmpty()
     self.window.buffer:render(lines)
 end
 

@@ -124,6 +124,10 @@ function Buffer:clearGameLines()
         self.bufh, startOffset, startOffset + len, false, createEmpty(len))
 end
 
+function Buffer:makeEmpty()
+    vim.api.nvim_buf_set_lines(vim.api.nvim_get_current_buf(), 0, -1, false, { "" })
+end
+
 function Buffer:getGameLines()
     local startOffset = table.getn(self.instructions) + 1
     local len = table.getn(self.lastRendered)

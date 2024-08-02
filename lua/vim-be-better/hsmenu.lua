@@ -81,7 +81,7 @@ function hsmenu:onChange()
         return
     end
 
-    local found, i, idx = getTableChanges(lines, scores, idx)
+    local found, i, idx = getTableChanges(lines, scores, 1)
     if found and viewinghs then
         self:close()
         viewinghs = nil

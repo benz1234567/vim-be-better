@@ -2,6 +2,7 @@ local WindowHandler = require("vim-be-better.window");
 local types = require("vim-be-better.types");
 local log = require("vim-be-better.log")
 local bind = require("vim-be-better.bind")
+local statistics = require("vim-be-better.statistics")
 local createEmpty = require("vim-be-better.game-utils").createEmpty
 
 local header = {

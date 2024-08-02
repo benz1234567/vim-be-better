@@ -266,7 +266,7 @@ function GameRunner:renderEndGame()
 
     table.insert(lines, string.format("%d / %d rounds completed", self.results.successes, self.config.roundCount))
     table.insert(lines, string.format("Score: %s", self.results.average))
-    table.insert(lines, string.format("Highscore: %s", statistics:getHighScore(self.results.games[1], self.config.difficulty)))
+    table.insert(lines, string.format("Highscore: %s", Stats:getHighScore(self.results.games[1], self.config.difficulty)))
     table.insert(lines, string.format("Game: %s", self.results.games[1]))
     table.insert(lines, string.format("Difficulty: %s", self.config.difficulty))
 
@@ -286,7 +286,6 @@ function GameRunner:renderEndGame()
 end
 
 function GameRunner:endGame()
-    Stats:updateHighScores()
     local lines = self:renderEndGame()
     self.state = states.gameEnd
     self.window.buffer:setInstructions({})

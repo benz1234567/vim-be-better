@@ -65,13 +65,15 @@ function statistics:updateHighScores()
     end
     sf = io.open(self.file, "r")
     local matchinglines = {}
+    if not sf then
+        print("file not found: " .. self.file)
+    end
     for line in sf:lines() do
         if line:match("^eg") then
             table.insert(matchinglines, line)
             local game, difficulty, average = parseScores(line)
             hsf, err = io.open(highscorepath .. "/" .. game, "r")
             if not hsf then
-                print("hsf error:", err)
                 return
             end
             local hsftable = {}
@@ -90,6 +92,9 @@ function statistics:updateHighScores()
             end
             hsf:close()
             local hsfw = io.open(highscorepath .. "/" .. game, "w")
+            if not hsf then
+                print("file not found: " .. highscorepath .. "/" .. game)
+            end
             for idx = 1, #hsftable do
                 hsfw:write(hsftable[idx])
             end
@@ -100,6 +105,7 @@ function statistics:updateHighScores()
 end
 
 function statistics:getHighScore(game, difficulty)
+    self:updateHighScores()
     local highscorepath = stdpath .. "/vim-be-better-highscores/"
     local hsf = io.open(highscorepath .. game, "r")
     local highscore = nil

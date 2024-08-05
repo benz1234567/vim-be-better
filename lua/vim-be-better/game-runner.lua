@@ -286,6 +286,7 @@ function GameRunner:renderEndGame()
 end
 
 function GameRunner:endGame()
+    Stats:updateHighScores()
     local lines = self:renderEndGame()
     self.state = states.gameEnd
     self.window.buffer:setInstructions({})

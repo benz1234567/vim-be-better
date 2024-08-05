@@ -74,7 +74,7 @@ function statistics:updateHighScores()
             local game, difficulty, average = parseScores(line)
             hsf, err = io.open(highscorepath .. "/" .. game, "r")
             if not hsf then
-                return
+                goto continue
             end
             local hsftable = {}
             for hsline in hsf:lines() do
@@ -100,6 +100,7 @@ function statistics:updateHighScores()
             end
             hsfw:close()
         end
+        ::continue::
     end
     sf:close()
 end

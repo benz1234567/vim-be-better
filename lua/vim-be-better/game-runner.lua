@@ -306,6 +306,7 @@ function GameRunner:run()
     self.window.buffer:setInstructions(self.round.getInstructions())
     local lines, cursorLine, cursorCol = self.round:render()
 
+    self.window.buffer:makeEmpty()
     self.window.buffer:render(lines)
 
     cursorLine = cursorLine or 0

@@ -26,7 +26,7 @@ end
 
 local function requireGames()
     local gamesPath = debug.getinfo(1).source:match("@?(.*/)") .. "games/"
-    
+
     local files = vim.fn.readdir(gamesPath)
 
     for _, file in ipairs(files) do

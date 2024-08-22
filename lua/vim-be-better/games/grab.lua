@@ -3,7 +3,6 @@ local log = require("vim-be-better.log")
 
 math.randomseed(os.time())
 
-print('dawd')
 local closeOpts = {
     ")",
     "]",

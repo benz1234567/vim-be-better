@@ -4,6 +4,7 @@ local gameLineCount = 5
 
 local instructions = {
     "use w and dw to delete the different word in the line",
+    "use b to go back and u if you deleted the wrong word",
 }
 
 local Words = {}
